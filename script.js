@@ -39,9 +39,9 @@ editor.addEventListener("paste", function(event) {
     row.map
 
   })
-  markdownRows.splice(1, 0, "|" + columnWidths.map(function(width, index) {
+  markdownRows.splice(1, 0, "+" + columnWidths.map(function(width, index) {
     return Array(columnWidths[index] + 3).join("-")
-  }).join("|") + "|")
+  }).join("+") + "+")
 
   // https://www.w3.org/TR/clipboard-apis/#the-paste-action
   // When pasting, the drag data store mode flag is read-only, hence calling
