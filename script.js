@@ -29,19 +29,27 @@ editor.addEventListener("paste", function(event) {
   })
   var markdownRows = rows.map(function(row, rowIndex) {
     // | Name         | Title | Email Address  |
-    // |--------------|-------|----------------|
+    // +==============+=======+================+
     // | Jane Atler   | CEO   | jane@acme.com  |
+    // |--------------|-------|----------------|
     // | John Doherty | CTO   | john@acme.com  |
+    // |--------------|-------|----------------|
     // | Sally Smith  | CFO   | sally@acme.com |
+    // |--------------|-------|----------------|
     return "| " + row.map(function(column, index) {
       return column + Array(columnWidths[index] - column.length + 1).join(" ")
-    }).join(" | ") + " |"
+    }).join(" | ") + " |"+ ( rowIndex != 0 ? "\n"
+         + "+" + row.map(function(column, index) {
+       return Array(columnWidths[index] + 3).join("-")
+    }).join("+") + "+" : "" )
     row.map
-
   })
   markdownRows.splice(1, 0, "+" + columnWidths.map(function(width, index) {
-    return Array(columnWidths[index] + 3).join("-")
+    return Array(columnWidths[index] + 3).join("=")
   }).join("+") + "+")
+
+  // markdownRows.splice(2, 1).join("")
+
 
   // https://www.w3.org/TR/clipboard-apis/#the-paste-action
   // When pasting, the drag data store mode flag is read-only, hence calling
